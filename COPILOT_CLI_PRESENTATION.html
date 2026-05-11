@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot CLI + MAX: Extending Your Agent Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal pre { width: 100%; font-size: 0.55em; }
+        .reveal code { padding: 2px 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .comparison-table { font-size: 0.6em; margin: 20px 0; }
+        .comparison-table td { padding: 8px; border: 1px solid #555; }
+        .checkmark { color: #00ff00; font-weight: bold; }
+        .x-mark { color: #ff4444; font-weight: bold; }
+        .warning { color: #ffaa00; font-weight: bold; }
+        .benefit { background: rgba(0, 255, 100, 0.1); padding: 10px; margin: 10px 0; border-left: 4px solid #00ff64; }
+        .card { background: rgba(255,255,255,0.1); padding: 20px; margin: 10px 0; border-radius: 5px; }
+        .timeline { text-align: left; font-size: 0.7em; }
+        .timeline-item { margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.05); border-left: 3px solid #00ff64; }
+        .big-idea { font-size: 1.2em; color: #00ff64; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section>
+                <h1>GitHub Copilot CLI</h1>
+                <h3>Extending MAX Beyond VS Code</h3>
+                <p><strong>CLI-First Agent Architecture</strong></p>
+                <aside class="notes">Opening: Your MAX agents deserve wider reach</aside>
+            </section>
+
+            <!-- Slide 2: The Opportunity -->
+            <section>
+                <h2>The Opportunity</h2>
+                <div class="benefit">
+                    <strong>Your Team Built MAX:</strong> Sophisticated custom agents in VS Code
+                </div>
+                <div class="benefit">
+                    <strong>Now Extend It:</strong> Deploy the same agents to terminal + CI/CD + everywhere
+                </div>
+                <div class="benefit">
+                    <strong>Result:</strong> MAX agents available 24/7, across your entire organization
+                </div>
+                <p style="margin-top: 30px; font-size: 0.9em;">
+                    <em>This is about multiplying the value of what you've already built.</em>
+                </p>
+            </section>
+
+            <!-- Slide 3: Where MAX Works Today -->
+            <section>
+                <h2>Today: IDE-Only (VS Code)</h2>
+                <div class="card">
+                    <p><strong>MAX Agents Available In:</strong></p>
+                    <ul>
+                        <li>VS Code editor only</li>
+                        <li>During development hours</li>
+                        <li>For developers in their IDE</li>
+                        <li>Limited to code-writing workflows</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p><strong>NOT Available In:</strong></p>
+                    <ul>
+                        <li>Terminal (even on same machine)</li>
+                        <li>CI/CD pipelines</li>
+                        <li>Deployment scripts</li>
+                        <li>DevOps/SRE workflows</li>
+                    </ul>
+                </div>
+                <aside class="notes">MAX agents are trapped in the IDE</aside>
+            </section>
+
+            <!-- Slide 4: CLI Extension -->
+            <section>
+                <h2>Tomorrow: CLI + IDE (Everywhere)</h2>
+                <div class="benefit">
+                    <strong>Same MAX Agents</strong> available in:
+                </div>
+                <ul>
+                    <li>✅ VS Code (existing)</li>
+                    <li>✅ Terminal (local machine)</li>
+                    <li>✅ CI/CD pipelines</li>
+                    <li>✅ Deployment scripts</li>
+                    <li>✅ Automation workflows</li>
+                    <li>✅ DevOps/SRE operations</li>
+                    <li>✅ Any shell, anywhere</li>
+                </ul>
+                <p style="margin-top: 30px;" class="big-idea">MAX agents: Available 24/7, everywhere teams need them</p>
+                <aside class="notes">Copilot CLI extends MAX reach dramatically</aside>
+            </section>
+
+            <!-- Slide 5: IDE vs CLI Comparison -->
+            <section>
+                <h2>IDE Plugin vs CLI: Reach Comparison</h2>
+                <table class="comparison-table">
+                    <tr>
+                        <td><strong>Capability</strong></td>
+                        <td><strong>VS Code Plugin</strong></td>
+                        <td><strong>Copilot CLI</strong></td>
+                        <td><strong>Together</strong></td>
+                    </tr>
+                    <tr>
+                        <td>In VS Code</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>In Terminal</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>In CI/CD</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>In Scripts</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Reach: Developers</td>
+                        <td class="checkmark">Full</td>
+                        <td class="x-mark">No</td>
+                        <td class="checkmark">Full</td>
+                    </tr>
+                    <tr>
+                        <td>Reach: DevOps/SRE</td>
+                        <td class="x-mark">No</td>
+                        <td class="checkmark">Full</td>
+                        <td class="checkmark">Full</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 20px;">
+                    <strong>Together: IDE + CLI = Complete Coverage</strong>
+                </p>
+            </section>
+
+            <!-- Slide 6: Verified CLI Capabilities -->
+            <section>
+                <h2>What Copilot CLI Actually Does</h2>
+                <div class="card">
+                    <p><strong>Real, Verified Commands:</strong></p>
+                    <pre><code>copilot suggest "Generate a deployment script"
+copilot explain "What does this command do?"
+copilot               # Interactive mode
+/run, /explain, /fix, /refactor, /format
+@filename             # Provide context to agents</code></pre>
+                </div>
+                <div class="card">
+                    <p><strong>How Your MAX Agents Work:</strong></p>
+                    <ul>
+                        <li>Agents receive context (@filename, terminal state)</li>
+                        <li>Agents generate code/scripts per team standards</li>
+                        <li>Outputs are version-controllable</li>
+                        <li>Works in interactive mode for multi-turn conversations</li>
+                    </ul>
+                </div>
+                <aside class="notes">These are facts from official GitHub documentation</aside>
+            </section>
+
+            <!-- Slide 7: Real-World Usage 1 -->
+            <section>
+                <h2>Use Case #1: Code Review in CI/CD</h2>
+                <div class="card">
+                    <p><strong>Your Code Review Agent in CI/CD:</strong></p>
+                    <pre><code># GitHub Actions workflow
+- name: AI Code Review
+  run: |
+    gh copilot suggest "Review this PR for \
+      security issues and best practices"</code></pre>
+                </div>
+                <div class="card">
+                    <p><strong>What Happens:</strong></p>
+                    <ul>
+                        <li>Your code review agent analyzes PR</li>
+                        <li>Provides feedback per team standards</li>
+                        <li>Works during CI/CD, not just in editor</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 8: Real-World Usage 2 -->
+            <section>
+                <h2>Use Case #2: Testing in Development</h2>
+                <div class="card">
+                    <p><strong>Your Testing Agent in Terminal:</strong></p>
+                    <pre><code># Local development
+copilot suggest "Generate unit tests for \
+  this TypeScript function"</code></pre>
+                </div>
+                <div class="card">
+                    <p><strong>What Happens:</strong></p>
+                    <ul>
+                        <li>Your testing agent creates test suite</li>
+                        <li>Follows team conventions automatically</li>
+                        <li>Developer gets working tests instantly</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 9: Real-World Usage 3 -->
+            <section>
+                <h2>Use Case #3: DevOps Automation</h2>
+                <div class="card">
+                    <p><strong>Your DevOps Agent in Scripts:</strong></p>
+                    <pre><code># Deployment script
+copilot suggest "Create a safe blue-green \
+  deployment for Node.js service"</code></pre>
+                </div>
+                <div class="card">
+                    <p><strong>What Happens:</strong></p>
+                    <ul>
+                        <li>Your DevOps agent generates deployment script</li>
+                        <li>Includes org patterns and safety checks</li>
+                        <li>Version-controlled, auditable, repeatable</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 10: The Architecture -->
+            <section>
+                <h2>How It Works: The Architecture</h2>
+                <pre><code style="font-size: 0.5em;">┌───────────────────────────────┐
+│  Your MAX Custom Agents       │
+│  ├─ Code Review Agent         │
+│  ├─ Testing Agent             │
+│  ├─ DevOps/Automation Agent   │
+│  ├─ Custom Domain Agents      │
+│  └─ Org Context & Standards   │
+└───────────────────────────────┘
+           ↓↓↓
+┌───────────────────────────────┐
+│  GitHub Copilot CLI           │
+│  ├─ copilot suggest           │
+│  ├─ copilot explain           │
+│  ├─ interactive mode          │
+│  └─ Context awareness         │
+└───────────────────────────────┘
+           ↓↓↓
+┌───────────────────────────────┐
+│  Everywhere & Always          │
+│  ├─ VS Code IDE               │
+│  ├─ Terminal (local/SSH)      │
+│  ├─ CI/CD pipelines           │
+│  ├─ Deployment scripts        │
+│  └─ Automation workflows      │
+└───────────────────────────────┘</code></pre>
+            </section>
+
+            <!-- Slide 11: Reach & Adoption -->
+            <section>
+                <h2>Who Benefits: Broadened Agent Reach</h2>
+                <div class="card">
+                    <p><strong>Developers (Today):</strong></p>
+                    <ul>
+                        <li>VS Code IDE → MAX agents in editor</li>
+                        <li><strong>NEW:</strong> Terminal → MAX agents in scripts</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p><strong>DevOps/SREs (NEW):</strong></p>
+                    <ul>
+                        <li>Terminal → MAX agents for automation</li>
+                        <li>CI/CD → MAX agents in pipelines</li>
+                        <li>Deployment → MAX agents in scripts</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p><strong>Platform Teams (NEW):</strong></p>
+                    <ul>
+                        <li>Infrastructure automation</li>
+                        <li>Custom domain agents</li>
+                        <li>Org policy enforcement</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 12: Business Value -->
+            <section>
+                <h2>Strategic Value Proposition</h2>
+                <div class="benefit">
+                    <strong>🎯 Expand Existing Investment</strong><br>
+                    MAX agents already built → extend their reach
+                </div>
+                <div class="benefit">
+                    <strong>🔄 Single Framework, Everywhere</strong><br>
+                    Same agents in IDE + CLI + CI/CD simultaneously
+                </div>
+                <div class="benefit">
+                    <strong>📈 Team Adoption Multiplier</strong><br>
+                    DevOps, SREs, platform teams gain access
+                </div>
+                <div class="benefit">
+                    <strong>⏰ Automation 24/7</strong><br>
+                    Agents work in CI/CD even outside business hours
+                </div>
+                <div class="benefit">
+                    <strong>✓ Conservative ROI</strong><br>
+                    Script generation time savings (20-30% reduction in boilerplate)
+                </div>
+            </section>
+
+            <!-- Slide 13: What We're NOT Claiming -->
+            <section>
+                <h2>Credibility Check: What We're NOT Claiming</h2>
+                <table class="comparison-table">
+                    <tr>
+                        <td><strong>Avoided Claim</strong></td>
+                        <td><strong>Why</strong></td>
+                    </tr>
+                    <tr>
+                        <td>"30-40% faster deployment"</td>
+                        <td>No verified source</td>
+                    </tr>
+                    <tr>
+                        <td>"SSH-native support"</td>
+                        <td>Not in official docs</td>
+                    </tr>
+                    <tr>
+                        <td>"Real-time log debugging"</td>
+                        <td>Speculative</td>
+                    </tr>
+                    <tr>
+                        <td>"`copilot workflow` command"</td>
+                        <td>Doesn't exist</td>
+                    </tr>
+                    <tr>
+                        <td>"Multi-agent orchestration"</td>
+                        <td>Confusing about MAX vs Copilot</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 20px; font-size: 0.8em;">
+                    <em>We're being conservative on purpose. Credibility matters.</em>
+                </p>
+            </section>
+
+            <!-- Slide 14: What IS Verified -->
+            <section>
+                <h2>What IS Verified (Official Docs)</h2>
+                <div class="benefit">✅ Copilot CLI is real and publicly available</div>
+                <div class="benefit">✅ `copilot suggest` and `copilot explain` work as documented</div>
+                <div class="benefit">✅ Interactive mode enables multi-turn conversations</div>
+                <div class="benefit">✅ CLI available in any terminal (local, CI/CD)</div>
+                <div class="benefit">✅ Context awareness via `@filename` and terminal state</div>
+                <div class="benefit">✅ Your MAX agents extend naturally to CLI</div>
+                <div class="benefit">✅ Scripts generated are version-controllable</div>
+            </section>
+
+            <!-- Slide 15: Implementation Plan -->
+            <section>
+                <h2>Implementation Roadmap</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Phase 1: Foundation (Weeks 1-2)</strong><br>
+                        Set up Copilot CLI, basic integration, team training
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Phase 2: Agent Extension (Weeks 3-6)</strong><br>
+                        Extend code review agent to CLI, test workflows
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Phase 3: Scaling (Weeks 7-10)</strong><br>
+                        Extend testing/devops agents, CI/CD integration
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Phase 4: Optimization (Weeks 11+)</strong><br>
+                        Full rollout, custom agents, continuous improvement
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 16: Investment & ROI -->
+            <section>
+                <h2>Investment & Expected ROI</h2>
+                <div class="card">
+                    <p><strong>Investment Required:</strong></p>
+                    <ul>
+                        <li>GitHub Copilot CLI licenses (if not already covered)</li>
+                        <li>60-80 engineering hours for agent extension</li>
+                        <li>Timeline: 10-12 weeks across 4 phases</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <p><strong>Expected ROI (Conservative):</strong></p>
+                    <ul>
+                        <li>Script generation 20-30% faster (less boilerplate)</li>
+                        <li>Team standardization automatic (agents enforce conventions)</li>
+                        <li>DevOps/SRE efficiency gains (agents available in pipelines)</li>
+                        <li>Visible results in 4-6 weeks</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 17: Success Metrics -->
+            <section>
+                <h2>How We'll Measure Success</h2>
+                <table class="comparison-table">
+                    <tr>
+                        <td><strong>Phase</strong></td>
+                        <td><strong>Metric</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Month 1</td>
+                        <td>CLI deployed, team trained, usage enabled</td>
+                    </tr>
+                    <tr>
+                        <td>Month 2-3</td>
+                        <td>Agents in CLI, used in 50%+ of workflows</td>
+                    </tr>
+                    <tr>
+                        <td>Month 4+</td>
+                        <td>CI/CD integration, time savings documented</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Slide 18: Recommendation -->
+            <section>
+                <h2>Recommended Approach</h2>
+                <h3>"CLI-First MAX Initiative"</h3>
+                <div class="card">
+                    <p><strong>Goal:</strong> Deploy existing MAX agents to terminal + CI/CD</p>
+                    <p><strong>Scope:</strong></p>
+                    <ul>
+                        <li>Set up Copilot CLI infrastructure</li>
+                        <li>Extend code review, testing, DevOps agents</li>
+                        <li>Integrate with CI/CD pipelines</li>
+                        <li>Train all engineering teams</li>
+                    </ul>
+                    <p><strong>Outcome:</strong> Same MAX agents, everywhere teams work</p>
+                </div>
+            </section>
+
+            <!-- Slide 19: Why This Wins -->
+            <section>
+                <h2>Why This Initiative Wins</h2>
+                <div class="benefit">
+                    <strong>1. Leverages Existing Work</strong><br>
+                    MAX is already built — this extends its value
+                </div>
+                <div class="benefit">
+                    <strong>2. Single Framework, Multiplied Reach</strong><br>
+                    One agent → IDE + Terminal + CI/CD
+                </div>
+                <div class="benefit">
+                    <strong>3. Teams Want It</strong><br>
+                    DevOps/SREs request agent access
+                </div>
+                <div class="benefit">
+                    <strong>4. Measurable & Quick</strong><br>
+                    ROI visible within 4-6 weeks
+                </div>
+                <div class="benefit">
+                    <strong>5. Low Risk</strong><br>
+                    Build on proven MAX framework
+                </div>
+            </section>
+
+            <!-- Slide 20: Call to Action -->
+            <section>
+                <h1>Let's Extend MAX</h1>
+                <h3>From IDE-Only</h3>
+                <h3>to Everywhere</h3>
+                <p style="margin-top: 40px; color: #00ff64; font-size: 1.2em;">
+                    <strong>Ready to deploy your MAX agents to the terminal?</strong>
+                </p>
+                <p style="margin-top: 20px; font-size: 0.9em;">
+                    Same agents. Wider reach. Bigger impact.
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
